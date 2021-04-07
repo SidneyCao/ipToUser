@@ -6,8 +6,8 @@ def index(request):
     user = request.GET.get('user')
     ip = request.GET.get('ip')
     if user != None:
-        userToip(user)
-        return HttpResponse(user)
+        mac = userToip(user)
+        return HttpResponse(mac)
     else:
         return HttpResponse(ip)
 
@@ -17,5 +17,5 @@ def userToip(user):
         for line in f:
             if re.search(pattern, line):
                 lastMatch = line   
-    print(lastMatch.split(' ')[-1].split(')')[0])    
+    return lastMatch.split(' ')[-1].split(')')[0]    
 
