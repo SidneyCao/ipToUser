@@ -17,5 +17,5 @@ def userToip(user):
         for line in f:
             if re.search(pattern, line):
                 lastMatch = line   
-    return lastMatch.split(' ')[-1].split(')')[0]    
+    return lastMatch.split(' ')[-1].split(')')[0].replace('-',':')    
 
