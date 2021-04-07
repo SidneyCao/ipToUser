@@ -25,7 +25,7 @@ SECRET_KEY = 'tulz(fs4*wr=h53cby$+dnd$uqh19a-bdxzrd3whazmr5psnbt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
