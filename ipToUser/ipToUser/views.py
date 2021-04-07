@@ -14,10 +14,8 @@ def index(request):
 def userToip(user):
     pattern = user
     with open('/var/log/radius/radius.log') as f:
-        print(f)
-        '''
         for line in f:
             if re.search(pattern, line):
-                print(line)
-        '''            
+                lastMatch = line   
+    print(lastMatch)    
 
