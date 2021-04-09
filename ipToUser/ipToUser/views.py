@@ -22,5 +22,5 @@ def userToMac(user: str) -> set:
         for line in f:
             if re.match(pattern, line):  
                 print(line) 
-                mac.add(line.split(' ')[-1].split(')')[0].replace('-',':'))    
+                mac.add(line.split('cli ')[-1].split(')')[0].replace('-',':'))    
     return mac
