@@ -5,7 +5,7 @@ import paramiko
 
 today = date.today().strftime("%b\s+%d").replace('0','')
 DHCPServ = '172.26.73.36'
-pKey = paramiko.DSAKey.from_private_key_file('/root/.ssh/id_dsa')
+pKey = paramiko.DSSKey.from_private_key_file('/root/.ssh/id_dsa')
 
 def index(request):
     user = request.GET.get('user')
