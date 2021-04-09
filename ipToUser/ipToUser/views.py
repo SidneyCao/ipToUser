@@ -39,5 +39,5 @@ def sshToDHCP():
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname=DHCPServ,port=22,username='admin',pkey=pKey)
-    stdin, stdout, stderr = client.exec_command('ip dhcp server print')
+    stdin, stdout, stderr = client.exec_command('ip dhcp-server print')
     print(stdout.read().decode('utf-8'))
