@@ -10,7 +10,6 @@ def index(request):
     ip = request.GET.get('ip')
     if user != None:
         mac = userToMac(user)
-        print(mac)
         return HttpResponse(mac,content_type="text/plain")
     else:
         return HttpResponse(ip)
@@ -18,8 +17,7 @@ def index(request):
 
 def userToMac(user: str) -> set:
     pattern = '^.*' + today + '.*' + user + '.*cli\s+.*$'
-    print(pattern)
-    mac = set()
+    mac = {}
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.match(pattern, line): 
