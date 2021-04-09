@@ -12,7 +12,8 @@ def index(request):
     ip = request.GET.get('ip')
     if user != None:
         macs = getMacs(user)
-        sshToFind('mac-address','AC:37:43:4F:1C:07')
+        for mac in macs.keys:
+            mas[mac] = sshToFind('mac-address',mac)
         return HttpResponse(macs,content_type="text/plain")
     else:
         return HttpResponse(ip)
@@ -37,4 +38,4 @@ def sshToFind(key: str, value: str):
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname=DHCPServ,port=22,username='admin',pkey=pKey)
     stdin, stdout, stderr = client.exec_command('ip dhcp-server lease print where {}={}'.format(key,value))
-    print(stdout.read().decode('utf-8'))
+    return stdout.read().decode('utf-8')
