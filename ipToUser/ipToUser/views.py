@@ -16,7 +16,7 @@ def index(request):
 
 
 def userToMac(user: str) -> set:
-    pattern = '^.*' + today + '.*' + user + '.*cli+*$'
+    pattern = '^.*' + today + '.*' + user + '.*cli+$'
     mac = set()
     with open('/var/log/radius/radius.log') as f:
         for line in f:
