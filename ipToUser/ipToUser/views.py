@@ -3,7 +3,7 @@ from datetime import date
 import re
 import paramiko
 
-today = date.today().strftime("%b  %d")
+today = date.today().strftime("%b.*%d").replace('0','')
 
 def index(request):
     user = request.GET.get('user')
@@ -17,6 +17,7 @@ def index(request):
 
 def userToMac(user):
     pattern = '^.*' + today + '.*' + user + '.*$'
+    print(date)
     print(pattern)
     with open('/var/log/radius/radius.log') as f:
         for line in f:
