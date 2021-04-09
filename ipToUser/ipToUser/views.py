@@ -14,6 +14,7 @@ def index(request):
         macs = getMacs(user)
         for mac in macs.keys():
             macs[mac] = sshToFind('mac-address',mac)
+        print(macs)
         return HttpResponse(macs,content_type="text/plain")
     else:
         return HttpResponse(ip)
