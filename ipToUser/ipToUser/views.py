@@ -11,14 +11,14 @@ def index(request):
     user = request.GET.get('user')
     ip = request.GET.get('ip')
     if user != None:
-        macs = userToMac(user)
-        sshToDHCP()
+        macs = getMacs(user)
+        sshToFind('mac-address','AC:37:43:4F:1C:07')
         return HttpResponse(macs,content_type="text/plain")
     else:
         return HttpResponse(ip)
 
 
-def userToMac(user: str) -> dict:
+def getMacs(user: str) -> dict:
     pattern = '^.*' + today + '.*' + user + '.*cli\s+.*$'
     macs = {}
     with open('/var/log/radius/radius.log') as f:
@@ -31,13 +31,10 @@ def userToMac(user: str) -> dict:
                     macs[mac]=''
     return macs
 
-#def macToIp(macs: dict) -> dict:
 
-
-
-def sshToDHCP():
+def sshToFind(key: str, value: str):
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname=DHCPServ,port=22,username='admin',pkey=pKey)
-    stdin, stdout, stderr = client.exec_command('ip dhcp-server print')
+    stdin, stdout, stderr = client.exec_command('ip dhcp-server lease where {}={}'.format(key,value))
     print(stdout.read().decode('utf-8'))
