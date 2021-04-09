@@ -10,7 +10,7 @@ def index(request):
     ip = request.GET.get('ip')
     if user != None:
         mac = userToMac(user)
-        return HttpResponse(mac)
+        return HttpResponse(Context(mac))
     else:
         return HttpResponse(ip)
 
