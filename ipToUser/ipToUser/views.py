@@ -24,4 +24,4 @@ def userToMac(user):
                 lastMatch = line   
     return lastMatch.split(' ')[-1].split(')')[0].replace('-',':')    
 
-def macToip(mac):
+#def macToip(mac):
