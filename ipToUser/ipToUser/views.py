@@ -15,15 +15,11 @@ def index(request):
         return HttpResponse(ip)
 
 
-def userToMac(user):
+def userToMac(user: str) -> Set{str}:
     pattern = '^.*' + today + '.*' + user + '.*$'
-    print(date)
-    print(pattern)
+    mac = set()
     with open('/var/log/radius/radius.log') as f:
         for line in f:
-            if re.match(pattern, line):
-                #lastMatch = line   
-                print(line)
-    #return lastMatch.split(' ')[-1].split(')')[0].replace('-',':')    
-    return
-#def macToip(mac):
+            if re.match(pattern, line):   
+                mac.add(line.split(' ')[-1].split(')')[0].replace('-',':'))    
+    return mac
