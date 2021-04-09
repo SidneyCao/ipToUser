@@ -16,7 +16,7 @@ def index(request):
 
 
 def userToMac(user):
-    pattern = '.*' + user + '.*' + today + '.*'
+    pattern = '.*' + today + '.*' + user + '.*'
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.search(pattern, line):
