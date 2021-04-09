@@ -11,7 +11,7 @@ def index(request):
     if user != None:
         macs = userToMac(user)
         print(macs)
-        return HttpResponse(macs.keys(),content_type="text/plain")
+        return HttpResponse(macs,content_type="text/plain")
     else:
         return HttpResponse(ip)
 
