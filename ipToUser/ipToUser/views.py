@@ -22,6 +22,5 @@ def userToMac(user: str) -> set:
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.match(pattern, line): 
-                print(line) 
                 mac.add(line.split('cli ')[-1].split(')')[0].replace('-',':'))    
     return mac
