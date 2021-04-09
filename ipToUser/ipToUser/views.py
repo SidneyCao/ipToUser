@@ -15,7 +15,7 @@ def index(request):
         return HttpResponse(ip)
 
 
-def userToMac(user: str) -> Set{str}:
+def userToMac(user: str) -> set:
     pattern = '^.*' + today + '.*' + user + '.*$'
     mac = set()
     with open('/var/log/radius/radius.log') as f:
