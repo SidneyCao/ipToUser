@@ -4,13 +4,15 @@ import re
 import paramiko
 
 today = date.today().strftime("%b\s+%d").replace('0','')
+DHCPServ = '172.26.73.36'
+pKey = paramiko.DSAKey.from_private_key_file('/root/.ssh/id_dsa')
 
 def index(request):
     user = request.GET.get('user')
     ip = request.GET.get('ip')
     if user != None:
         macs = userToMac(user)
-        print(macs)
+        sshToDHCP()
         return HttpResponse(macs,content_type="text/plain")
     else:
         return HttpResponse(ip)
@@ -28,3 +30,13 @@ def userToMac(user: str) -> dict:
                 else:
                     macs[mac]=''
     return macs
+
+#def macToIp(macs: dict) -> dict:
+
+
+
+def sshToDHCP():
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(hostname=DHCPServ,port=22,username='admin',pkey=pKey)
+    stdin, stdout, stderr = client.exec_command('ip dhcp print')
