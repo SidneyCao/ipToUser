@@ -3,7 +3,7 @@ from datetime import date
 import re
 import paramiko
 
-today = date.today.strftime("%b  %d")
+today = date.today().strftime("%b  %d")
 
 def index(request):
     user = request.GET.get('user')
