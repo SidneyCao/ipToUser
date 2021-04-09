@@ -16,12 +16,12 @@ def index(request):
 
 
 def userToMac(user):
-    pattern = user
-    print(today)
+    pattern = '.*' + user + '.*' + today + '.*'
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.search(pattern, line):
-                lastMatch = line   
-    return lastMatch.split(' ')[-1].split(')')[0].replace('-',':')    
-
+                #lastMatch = line   
+                print(line)
+    #return lastMatch.split(' ')[-1].split(')')[0].replace('-',':')    
+    return
 #def macToip(mac):
