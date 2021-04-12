@@ -42,6 +42,7 @@ def getUser(mac: str) -> str:
         for line in f:
             if re.match(pattern, line): 
                 user =  line.split('OK: \[')[1]
+        return user
 
 
 def sshToFind(key: str, value: str, offset: int):
