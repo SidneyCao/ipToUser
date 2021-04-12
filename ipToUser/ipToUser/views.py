@@ -18,8 +18,8 @@ def index(request):
         return HttpResponse(json.dumps(macs),content_type="text/plain")
     else:
         mac = sshToFind('address', ip, 33)
-        print(mac)
-        return HttpResponse(ip)
+        user = getUser(mac[0])
+        return HttpResponse(user)
 
 
 def getMacs(user: str) -> dict:
@@ -34,6 +34,14 @@ def getMacs(user: str) -> dict:
                 else:
                     macs[mac]=''
     return macs
+
+def getUser(mac: str) -> str:
+    pattern = '^.*' + today + '.*' + mac.replace(':','-') + '.*cli\s+.*$'
+    with open('/var/log/radius/radius.log') as f:
+        for line in f:
+            if re.match(pattern, line): 
+                user =  line.split('OK: \[')[1].split('\] ')[0]
+    return user
 
 
 def sshToFind(key: str, value: str, offset: int):
