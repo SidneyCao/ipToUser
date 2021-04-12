@@ -26,7 +26,7 @@ def getMacs(user: str) -> dict:
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.match(pattern, line): 
-                mac = line.split('cli ')[-1].split(')')[0].replace('-',':')+'\n'
+                mac = line.split('cli ')[-1].split(')')[0].replace('-',':')
                 if mac in macs:
                     pass
                 else:
