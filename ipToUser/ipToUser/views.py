@@ -42,8 +42,9 @@ def sshToFind(key: str, value: str, offset: int):
     ans = ''
     for line in stdout.readlines():
         print(line)
-        if re.search(value, line):
-            print(line)
-            ans = line.split(' ')[offset]
+        break
+        #if re.search(value, line):
+        #    print(line)
+        #    ans = line.split(' ')[offset]
     client.close()
     return ans
