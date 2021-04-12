@@ -43,8 +43,8 @@ def sshToFind(key: str, value: str, offset: int):
     i = 0
     for line in stdout.readlines():
         print(line)
-        i += 2
-        if i== 2:
+        i += 1
+        if i== 3:
             break
         #if re.search(value, line):
         #    print(line)
