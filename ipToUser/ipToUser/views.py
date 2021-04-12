@@ -41,8 +41,8 @@ def getUser(mac: str) -> str:
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.match(pattern, line): 
-                user =  line.split('OK:\s\[')[1]
-        return user
+                user =  line.split('OK: [')[1].split(']')[0]
+    return user
 
 
 def sshToFind(key: str, value: str, offset: int):
