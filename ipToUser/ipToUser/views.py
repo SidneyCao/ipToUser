@@ -37,6 +37,7 @@ def getMacs(user: str) -> dict:
 
 def getUser(mac: str) -> str:
     pattern = '^.*' + today + '.*' + mac.replace(':','-') + '.*cli\s+.*$'
+    user = ''
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.match(pattern, line): 
