@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from datetime import date
 import re
 import paramiko
+import json
 
 today = date.today().strftime("%b\s+%d").replace('0','')
 DHCPServ = '172.26.73.36'
@@ -15,7 +16,7 @@ def index(request):
         for mac in macs.keys():
             macs[mac] = sshToFind('mac-address', mac, 2)
         print(macs)
-        return HttpResponse(macs,content_type="text/plain")
+        return HttpResponse(json.dumps(macs),content_type="text/plain")
     else:
         return HttpResponse(ip)
 
