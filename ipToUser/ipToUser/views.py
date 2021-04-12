@@ -44,7 +44,7 @@ def sshToFind(key: str, value: str, offset: int):
     for line in stdout.readlines():
         print(line)
         i += 1
-        if i== 3:
+        if i== 2:
             break
         #if re.search(value, line):
         #    print(line)
