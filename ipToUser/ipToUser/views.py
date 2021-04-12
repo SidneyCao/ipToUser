@@ -41,7 +41,7 @@ def getUser(mac: str) -> str:
     with open('/var/log/radius/radius.log') as f:
         for line in f:
             if re.match(pattern, line): 
-                user =  line.split('OK: \[')[1]
+                user =  line.split('OK:\s\[')[1]
         return user
 
 
