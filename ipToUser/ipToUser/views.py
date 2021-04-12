@@ -39,11 +39,9 @@ def sshToFind(key: str, value: str, offset: int):
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname=DHCPServ,port=22,username='admin',pkey=pKey)
     stdin, stdout, stderr = client.exec_command('ip dhcp-server lease print where {}={}'.format(key,value))
-    ans = ''
+    ans = []
     for line in stdout.readlines():
         if value in line:
-            ans = line.split(' ')[offset]
-        
-    
+            ans.append(line.split(' ')[offset])
     client.close()
     return ans
