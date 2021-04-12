@@ -41,7 +41,7 @@ def sshToFind(key: str, value: str, offset: int):
     stdin, stdout, stderr = client.exec_command('ip dhcp-server lease print where {}={}'.format(key,value))
     ans = ''
     for line in stdout.readlines()[2:]:
-        #ans = line.split(' ')[offset]
+        ans = line.replace(' ','')
         print(line)
     
     client.close()
