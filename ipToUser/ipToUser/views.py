@@ -4,7 +4,6 @@ import re
 import paramiko
 import json
 
-today = date.today().strftime("%b\s+%d").replace('0','')
 DHCPServ = '172.26.73.36'
 pKey = paramiko.DSSKey.from_private_key_file('/root/.ssh/id_dsa')
 
@@ -23,6 +22,7 @@ def index(request):
 
 
 def getMacs(user: str) -> dict:
+    today = date.today().strftime("%b\s+%d").replace('0','')
     pattern = '^.*' + today + '.*' + user + '.*cli\s+.*$'
     macs = {}
     with open('/var/log/radius/radius.log') as f:
