@@ -4,7 +4,7 @@ import re
 import paramiko
 import json
 
-DHCPServ = '172.26.73.36'
+DHCPServ = '172.26.204.110'
 pKey = paramiko.DSSKey.from_private_key_file('/root/.ssh/id_dsa')
 
 def index(request):
@@ -13,10 +13,11 @@ def index(request):
     if user != None:
         macs = getMacs(user)
         for mac in macs.keys():
-            macs[mac] = sshToFind('mac-address', mac, 2)
+            macs[mac] = sshToFind('mac-address', mac, 3)
         return HttpResponse(json.dumps(macs),content_type="text/plain")
     else:
-        mac = sshToFind('address', ip, 33)
+        mac = sshToFind('address', ip, 34)
+        print(mac)
         user = getUser(mac[0])
         return HttpResponse(user)
 
